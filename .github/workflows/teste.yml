@@ -3,7 +3,7 @@ name: Teste de Email Diario
 on:
   workflow_dispatch: # Isso cria o botão manual!
   schedule:
-    - cron: '35 11 * * *' # Roda todo dia
+    - cron: '0 13 * * *' # Roda todo dia
 
 jobs:
   disparo_email:
@@ -23,4 +23,5 @@ jobs:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_SENHA: ${{ secrets.EMAIL_SENHA }}
         run: python enviar_teste.py
+
 
