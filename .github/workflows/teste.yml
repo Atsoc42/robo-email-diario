@@ -1,0 +1,25 @@
+name: Teste de Email Diario
+
+on:
+  workflow_dispatch: # Isso cria o botão manual!
+  schedule:
+    - cron: '0 10 * * *' # Roda todo dia
+
+jobs:
+  disparo_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Rodar script de envio
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_SENHA: ${{ secrets.EMAIL_SENHA }}
+        run: python enviar_teste.py
